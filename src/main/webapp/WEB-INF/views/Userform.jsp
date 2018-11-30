@@ -35,57 +35,79 @@
 	href="${pageContext.request.contextPath}/component/css/bootstrap.css"
 	rel="stylesheet">
 <script type="text/javascript">
-	$(document).ready(function() {
-		var phoneNumbers = [];
-		$("#savebtn").click(function() {
-			$("#maintable tbody tr").each(function() {
-				var mobileNumberType = $(this).find(".mobileNumberType").val();
-				var mobileNumber = $(this).find(".mobileNumber").val();
-				console.log(mobileNumber);
-				var obj = {};
-				obj.mobileNumberType = mobileNumberType;
-				obj.mobileNumber = mobileNumber;
-				phoneNumbers.push(obj);
-			})
-			console.log(phoneNumbers)
+	$(document)
+			.ready(
+					function() {
+						var phoneNumbers = [];
+						$("#savebtn")
+								.click(
+										function() {
+											$("#maintable tbody tr")
+													.each(
+															function() {
+																var mobileNumberType = $(
+																		this)
+																		.find(
+																				".mobileNumberType")
+																		.val();
+																var mobileNumber = $(
+																		this)
+																		.find(
+																				".mobileNumber")
+																		.val();
+																console
+																		.log(mobileNumber);
+																var obj = {};
+																obj.mobileNumberType = mobileNumberType;
+																obj.mobileNumber = mobileNumber;
+																phoneNumbers
+																		.push(obj);
+															})
+											console.log(phoneNumbers)
 
-			//document.userModel.phoneNumbers = JSON.stringify(phoneNumbers);
-			document.userModel.submit();
-			/* 	$("userModel").submit(); */
-		});
-		 $(".add-row").click(function(){
-	          /*   var name = $("#name").val();
-	            var email = $("#email").val(); */
-	            var index=$('#maintable tbody tr').length;
-	            var markup = "<tr><td><input type='checkbox' name='record'></td><td><input type='text' id='mobileNumberType' name='dummayList["+index+"].mobileNumberType' class='mobileNumberType' path='dummayList["+index+"].mobileNumberType'/></td>";
-	            markup+="<td><input type='text' id='mobileNumber' name='dummayList["+index+"].mobileNumber' class='mobileNumber' path='dummayList["+index+"].mobileNumber'/></td></tr>"
-	            $("table tbody").append(markup);
-	        });
-		 
-		 $(".delete-row").click(function(){
-	            $("table tbody").find('input[name="record"]').each(function(){
-	            	if($(this).is(":checked")){
-	                    $(this).parents("tr").remove();
-	                }
-	            });
-	        });
-		/* $("#add_new").click(function() {
+											//document.userModel.phoneNumbers = JSON.stringify(phoneNumbers);
+											document.userModel.submit();
+											/* 	$("userModel").submit(); */
+										});
+						$(".add-row")
+								.click(
+										function() {
+											/*   var name = $("#name").val();
+											  var email = $("#email").val(); */
+											var index = $('#maintable tbody tr').length;
+											var markup = "<tr><td><input type='checkbox' name='record'></td><td><input type='text' id='mobileNumberType' name='dummayList["+index+"].mobileNumberType' class='mobileNumberType' path='dummayList["+index+"].mobileNumberType'/></td>";
+											markup += "<td><input type='text' id='mobileNumber' name='dummayList["+index+"].mobileNumber' class='mobileNumber' path='dummayList["+index+"].mobileNumber'/></td></tr>"
+											$("table tbody").append(markup);
+										});
 
-			$("#maintable").each(function() {
-				
-				var tds = '<tr>';
-				jQuery.each($('tr:last td', this), function() {
-					tds += '<td>' + $(this).html() + '</td>';
-				});
-				tds += '</tr>';
-				if ($('tbody', this).length > 0) {
-					$('tbody', this).append(tds);
-				} else {
-					$(this).append(tds);
-				}
-			});
-		}); */
-	});
+						$(".delete-row").click(
+								function() {
+									$("table tbody").find(
+											'input[name="record"]').each(
+											function() {
+												if ($(this).is(":checked")) {
+													$(this).parents("tr")
+															.remove();
+												}
+											});
+								});
+						/* $("#add_new").click(function() {
+
+							$("#maintable").each(function() {
+								
+								var tds = '<tr>';
+								jQuery.each($('tr:last td', this), function() {
+									tds += '<td>' + $(this).html() + '</td>';
+								});
+								tds += '</tr>';
+								if ($('tbody', this).length > 0) {
+									$('tbody', this).append(tds);
+								} else {
+									$(this).append(tds);
+								}
+							});
+						}); */
+					});
 </script>
 <body>
 	<h1>Create New User</h1>
@@ -155,10 +177,12 @@
 			</tbody>
 		</table>
 		<br>
-		
-		<div id="add_new" type="button" class="add-row btn btn-primary">ADD NEW</div>
-		<button type="button" class="delete-row btn btn-primary">Delete Row</button>
-    </form>
+
+		<div id="add_new" type="button" class="add-row btn btn-primary">ADD
+			NEW</div>
+		<button type="button" class="delete-row btn btn-primary">Delete
+			Row</button>
+		</form>
 		<button id="savebtn" class="btn btn-primary"
 			style="margin-left: 32px;">Create User</button>
 		<!-- <button type="submit" class="btn btn-primary" style="margin-left: 32px;">Create User</button> -->
