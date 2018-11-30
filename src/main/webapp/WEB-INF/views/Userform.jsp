@@ -158,25 +158,7 @@
 		
 		<div id="add_new" type="button" class="add-row btn btn-primary">ADD NEW</div>
 		<button type="button" class="delete-row btn btn-primary">Delete Row</button>
-		
-		 
     </form>
-    <!-- <table>
-        <thead>
-            <tr>
-                <th>Select</th>
-                <th>Name</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="checkbox" name="record"></td>
-                <td>Peter Parker</td>
-                <td>peterparker@mail.com</td>
-            </tr>
-        </tbody>
-    </table> -->
 		<button id="savebtn" class="btn btn-primary"
 			style="margin-left: 32px;">Create User</button>
 		<!-- <button type="submit" class="btn btn-primary" style="margin-left: 32px;">Create User</button> -->
