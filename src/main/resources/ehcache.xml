@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://www.ehcache.org/ehcache.xsd"
+         updateCheck="false"
+         monitoring="autodetect"
+         dynamicConfig="true">
+<defaultCache
+ 		maxElementsInMemory="10000"
+		eternal="false"
+		timeToIdleSeconds="1000"
+		timeToLiveSeconds="1000"
+		overflowToDisk="true"
+		diskPersistent="false"
+		diskExpiryThreadIntervalSeconds="120" 
+	/> 
+
+<cache
+	name="com.web.ldap.model.UserModel"
+	maxEntriesLocalHeap="10000"
+	eternal="false"
+	timeToIdleSeconds="300"
+	timeToLiveSeconds="600"
+	  transactionalMode="off">
+    <persistence strategy="localTempSwap"/>
+ </cache>
+    <cache name="instruments"
+           maxElementsInMemory="100"
+           eternal="false"
+           overflowToDisk="false"
+           timeToLiveSeconds="300"
+           timeToIdleSeconds="100"
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+    </cache>
+    <cache name="usercache" 
+      maxEntriesLocalHeap="5000"
+      maxEntriesLocalDisk="1000" 
+      eternal="false" 
+      diskSpoolBufferSizeMB="20" 
+      timeToIdleSeconds="200" 
+      timeToLiveSeconds="500" 
+      memoryStoreEvictionPolicy="LFU" 
+      transactionalMode="off">
+        <persistence strategy="localTempSwap"/>
+    </cache>
+
+</ehcache>
