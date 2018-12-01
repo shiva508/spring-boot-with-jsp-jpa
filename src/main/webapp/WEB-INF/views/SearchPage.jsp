@@ -37,12 +37,6 @@
   
 </table>
 
-   
-     
-
-   
-  
-
 </form>
 </body>
 </html>

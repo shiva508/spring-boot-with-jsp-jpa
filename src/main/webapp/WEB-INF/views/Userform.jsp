@@ -137,7 +137,6 @@
 		</div>
 		<!-- <div class="form-group">
     <label for="exampleFormControlSelect2">Example multiple select</label>
-  
     <select multiple class="form-control" id="exampleFormControlSelect2">
       <option>1</option>
       <option>2</option>
@@ -177,7 +176,6 @@
 			</tbody>
 		</table>
 		<br>
-
 		<div id="add_new" type="button" class="add-row btn btn-primary">ADD
 			NEW</div>
 		<button type="button" class="delete-row btn btn-primary">Delete

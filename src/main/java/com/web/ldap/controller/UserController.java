@@ -3,6 +3,8 @@ package com.web.ldap.controller;
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -97,6 +99,15 @@ public class UserController {
 		languages.add(".NET");
 		return languages;
 	}
+	@ModelAttribute("alphabets")
+	Map<Integer, String> multiselect() {
+		Map<Integer, String> maplist = new TreeMap<>();
+		maplist.put(1,"A");
+		maplist.put(2,"B");
+		maplist.put(3,"C");
+		maplist.put(4,"D");
+		return maplist;
+	}
 
 	@GetMapping("/cachaedusers")
 	@ResponseBody
@@ -119,26 +130,32 @@ public class UserController {
 
 	@GetMapping("/findByUserNameAndLanguage/{userName}/{language}")
 	@ResponseBody
-	public UserModel findByUserNameAndLanguage(@PathVariable("userName")String userName,@PathVariable("language") String language) {
+	public UserModel findByUserNameAndLanguage(@PathVariable("userName") String userName,
+			@PathVariable("language") String language) {
 		return userModelService.findByUserNameAndLanguage(userName, language);
 	}
+
 	@GetMapping("/findByUserNameEndsWith/{userName}")
 	@ResponseBody
-	public List<UserModel> findByUserNameEndsWith(@PathVariable("userName")String userName){
+	public List<UserModel> findByUserNameEndsWith(@PathVariable("userName") String userName) {
 		return userModelService.findByUserNameEndsWith(userName);
 	}
+
 	@GetMapping("/findUserModelByUserNameOrEmailAddress/{username}/{emailAddress}")
 	@ResponseBody
-	public List<UserModel> findUserModelByUserNameOrEmailAddress(@PathVariable("username")String username, @PathVariable("emailAddress")String emailAddress) {
+	public List<UserModel> findUserModelByUserNameOrEmailAddress(@PathVariable("username") String username,
+			@PathVariable("emailAddress") String emailAddress) {
 		return userModelService.findUserModelByUserNameOrEmailAddress(username, emailAddress);
 	}
+
 	@GetMapping("/searchpage")
 	public String searchPage() {
-		return"SearchPage";
+		return "SearchPage";
 	}
+
 	@GetMapping("/explicitlyNamedPlus1inout/{arg}")
 	@ResponseBody
-	public Integer explicitlyNamedPlus1inout(@PathVariable("arg")Integer arg) {
+	public Integer explicitlyNamedPlus1inout(@PathVariable("arg") Integer arg) {
 		return userModelService.explicitlyNamedPlus1inout(arg);
 	}
 }
