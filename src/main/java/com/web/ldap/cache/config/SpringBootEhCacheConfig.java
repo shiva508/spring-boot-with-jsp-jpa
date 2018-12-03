@@ -9,9 +9,10 @@ import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 /*@Configuration
 @EnableCaching*/
-public class SpringBootEhCacheConfig {
+public class SpringBootEhCacheConfig{
 	/*@Bean*/
 public EhCacheManagerFactoryBean ehcacheManagerFactoryBean() {
 	EhCacheManagerFactoryBean ehcacheManagerFactoryBean=new EhCacheManagerFactoryBean();
