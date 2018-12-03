@@ -155,7 +155,4 @@ public class UserModel {
 				+ language + ", aboutYourSelf=" + aboutYourSelf + ", phoneNumbers=" + phoneNumbers + ", dummayList="
 				+ dummayList + "]";
 	}
-
-	
-
 }
