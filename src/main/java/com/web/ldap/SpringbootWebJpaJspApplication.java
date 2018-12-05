@@ -53,10 +53,15 @@ protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		in1.setInstrucrorDetails(ind1);
 		instrucrorRepository.save(in1);
 /*		instrucrorRepository.delete(in);*/
+		InstrucrorDetails instrucrorDetails2=null;
 		Optional<InstrucrorDetails> instrucrorDetails=instrucrorDetailsRepository.findById(2);
-		InstrucrorDetails instrucrorDetails2=instrucrorDetails.get();
+if(instrucrorDetails.isPresent()) {
+	instrucrorDetails2=instrucrorDetails.get();
+}
 		System.out.println("AAA"+instrucrorDetails2);
 		System.out.println("AAA"+instrucrorDetails2.getInstrucror());
+		//bi-directional delete
+		instrucrorDetailsRepository.deleteById(2);
 		
 	}
 }
