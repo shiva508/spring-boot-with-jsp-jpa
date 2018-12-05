@@ -110,6 +110,7 @@
 					});
 </script>
 <body>
+
 	<h1>Create New User</h1>
 	<form:form name="userModel" id="userModel" method="POST"
 		action="${pageContext.request.contextPath }/saveuser"
