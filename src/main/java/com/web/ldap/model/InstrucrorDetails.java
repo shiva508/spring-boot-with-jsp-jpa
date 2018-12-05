@@ -31,7 +31,12 @@ public class InstrucrorDetails {
 	@Column(name = "hobby")
 	private String hobby;
 	//for bidirectional
-	@OneToOne(mappedBy="instrucrorDetails",cascade=CascadeType.ALL)
+	//@OneToOne(mappedBy="instrucrorDetails",cascade=CascadeType.ALL)
+	//delete only InstrucrorDetails
+	@OneToOne(mappedBy="instrucrorDetails",cascade= {CascadeType.DETACH,
+													CascadeType.MERGE,
+													CascadeType.PERSIST,
+													CascadeType.REFRESH})
 	private Instrucror instrucror;
 	public Instrucror getInstrucror() {
 		return instrucror;

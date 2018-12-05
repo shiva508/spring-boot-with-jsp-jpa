@@ -60,7 +60,8 @@ if(instrucrorDetails.isPresent()) {
 }
 		System.out.println("AAA"+instrucrorDetails2);
 		System.out.println("AAA"+instrucrorDetails2.getInstrucror());
-		//bi-directional delete
+		instrucrorDetails2.getInstrucror().setInstrucrorDetails(null);
+		/*bi-directional delete*/
 		instrucrorDetailsRepository.deleteById(2);
 		
 	}
