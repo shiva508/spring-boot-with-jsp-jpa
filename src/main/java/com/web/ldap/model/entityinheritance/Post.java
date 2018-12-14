@@ -25,7 +25,7 @@ public class Post extends BaseEntity {
 	private PostDetails details;
 	@ManyToMany
 	@JoinTable(name = "post_tag", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
-	private Set tags = new HashSet();
+	private Set<Tag> tags = new HashSet();
 
 	public Post() {
 		super();

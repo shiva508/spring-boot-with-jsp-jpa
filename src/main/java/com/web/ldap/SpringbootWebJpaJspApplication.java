@@ -1,5 +1,8 @@
 package com.web.ldap;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +24,14 @@ import com.web.ldap.model.InstrucrorDetails;
 import com.web.ldap.model.entityinheritance.ContractEmployee;
 import com.web.ldap.model.entityinheritance.FullTimeEmployee;
 import com.web.ldap.model.entityinheritance.PartTimeEmployee;
+import com.web.ldap.model.entityinheritance.Post;
+import com.web.ldap.model.entityinheritance.PostComment;
+import com.web.ldap.model.entityinheritance.PostDetails;
 import com.web.ldap.model.entityinheritance.SmsNotification;
+import com.web.ldap.model.entityinheritance.Tag;
 import com.web.ldap.service.EmployeeService;
 import com.web.ldap.service.JoinedTableInheritanceService;
+import com.web.ldap.service.TagService;
 
 @SpringBootApplication
 /* @EnableCaching */
@@ -45,6 +53,8 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 	EmployeeService employeeDao;
 	@Autowired
 	JoinedTableInheritanceService joinedTableInheritanceService;
+	@Autowired
+	TagService tagService;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootWebJpaJspApplication.class, args);
 	}
@@ -98,5 +108,37 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 		smsNotification.setPhoneNumber("8247621473");
 		// fullTimeEmployeeRepository.save(partTimeEmployee);
 		joinedTableInheritanceService.sendSme(smsNotification);
+		
+		PostComment comment=new PostComment();
+		comment.setReview("Good");
+		
+		PostComment comment1=new PostComment();
+		comment1.setReview("Very Good");
+		
+		List<PostComment> postCommentList=new ArrayList<>();
+		postCommentList.add(comment);
+		postCommentList.add(comment1);
+		
+		
+		PostDetails details=new PostDetails();
+		details.setCreatedBy("Shiva");
+		details.setCreatedOn(new Date());
+		PostDetails details1=new PostDetails();
+		details1.setCreatedBy("Sai");
+		details1.setCreatedOn(new Date());
+		
+		List<PostDetails> postDetailsList=new ArrayList<>();
+		postDetailsList.add(details);
+		postDetailsList.add(details1);
+		
+		Tag tag=new Tag();
+		tag.setName("JDBC");
+		
+		Tag tag1=new Tag();
+		tag1.setName("Hibernate");
+		tagService.saveTag(tag);
+		tagService.saveTag(tag1);
+		Post post=new Post();
+		post.setTitle("A");
 	}
 }
