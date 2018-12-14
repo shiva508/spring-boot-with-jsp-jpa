@@ -17,43 +17,64 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Post extends BaseEntity{
+public class Post extends BaseEntity {
 	private String title;
-	@OneToMany(cascade=CascadeType.ALL,orphanRemoval=true,fetch=FetchType.LAZY,mappedBy="post")
-	private List<PostComment> comments=new ArrayList<>();
-	@OneToOne(cascade=CascadeType.ALL,mappedBy="post",orphanRemoval=true,fetch=FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy = "post")
+	private List<PostComment> comments = new ArrayList<>();
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "post", orphanRemoval = true, fetch = FetchType.LAZY)
 	private PostDetails details;
 	@ManyToMany
-	@JoinTable(name="post_tag",joinColumns=@JoinColumn(name = "post_id"),inverseJoinColumns=@JoinColumn(name="tag_id"))
+	@JoinTable(name = "post_tag", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
 	private Set tags = new HashSet();
+
 	public Post() {
 		super();
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public List<PostComment> getComments() {
 		return comments;
 	}
+
 	public void setComments(List<PostComment> comments) {
 		this.comments = comments;
 	}
+
 	public PostDetails getDetails() {
 		return details;
 	}
+
 	public void setDetails(PostDetails details) {
 		this.details = details;
 	}
+
 	public Set getTags() {
 		return tags;
 	}
+
 	public void setTags(Set tags) {
 		this.tags = tags;
 	}
+
 	public void addComment(PostComment comment) {
-		
+		comments.add(comment);
+		comment.setPost(this);
+	}
+
+	public void addDetails(PostDetails details) {
+		this.details = details;
+		details.setPost(this);
+	}
+
+	public void removeDetails() {
+		this.details.setPost(null);
+		this.details = null;
 	}
 }
