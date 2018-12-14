@@ -16,11 +16,11 @@ import com.web.ldap.dao.FullTimeEmployeeRepository;
 import com.web.ldap.dao.InstrucrorDetailsRepository;
 import com.web.ldap.dao.InstrucrorRepository;
 import com.web.ldap.dao.DefiningRepositoryInterfaces.FinetuningRepositoryDefinition.CustomUserMyBaseRepository;
-import com.web.ldap.model.ContractEmployee;
-import com.web.ldap.model.FullTimeEmployee;
 import com.web.ldap.model.Instrucror;
 import com.web.ldap.model.InstrucrorDetails;
-import com.web.ldap.model.PartTimeEmployee;
+import com.web.ldap.model.entityinheritance.ContractEmployee;
+import com.web.ldap.model.entityinheritance.FullTimeEmployee;
+import com.web.ldap.model.entityinheritance.PartTimeEmployee;
 import com.web.ldap.service.EmployeeService;
 
 @SpringBootApplication

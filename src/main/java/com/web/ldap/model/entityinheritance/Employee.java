@@ -1,4 +1,4 @@
-package com.web.ldap.model;
+package com.web.ldap.model.entityinheritance;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;

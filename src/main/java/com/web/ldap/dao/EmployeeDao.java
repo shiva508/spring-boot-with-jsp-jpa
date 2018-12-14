@@ -1,8 +1,8 @@
 package com.web.ldap.dao;
 
-import com.web.ldap.model.ContractEmployee;
-import com.web.ldap.model.FullTimeEmployee;
-import com.web.ldap.model.PartTimeEmployee;
+import com.web.ldap.model.entityinheritance.ContractEmployee;
+import com.web.ldap.model.entityinheritance.FullTimeEmployee;
+import com.web.ldap.model.entityinheritance.PartTimeEmployee;
 
 public interface EmployeeDao {
 public void savePart(PartTimeEmployee employee);

@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.ldap.dao.EmployeeDao;
-import com.web.ldap.model.ContractEmployee;
-import com.web.ldap.model.FullTimeEmployee;
-import com.web.ldap.model.PartTimeEmployee;
+import com.web.ldap.model.entityinheritance.ContractEmployee;
+import com.web.ldap.model.entityinheritance.FullTimeEmployee;
+import com.web.ldap.model.entityinheritance.PartTimeEmployee;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
