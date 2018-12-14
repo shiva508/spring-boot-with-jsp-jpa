@@ -19,4 +19,11 @@ public class TagServiceImpl implements TagService {
 		tagDao.saveTag(tag);
 	}
 
+	@Transactional
+	@Override
+	public Tag getTag(String referencace) {
+		// TODO Auto-generated method stub
+		return tagDao.getTag(referencace);
+	}
+
 }

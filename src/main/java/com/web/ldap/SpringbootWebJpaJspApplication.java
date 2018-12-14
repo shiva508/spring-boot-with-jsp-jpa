@@ -5,6 +5,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -31,6 +35,7 @@ import com.web.ldap.model.entityinheritance.SmsNotification;
 import com.web.ldap.model.entityinheritance.Tag;
 import com.web.ldap.service.EmployeeService;
 import com.web.ldap.service.JoinedTableInheritanceService;
+import com.web.ldap.service.PostService;
 import com.web.ldap.service.TagService;
 
 @SpringBootApplication
@@ -55,11 +60,17 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 	JoinedTableInheritanceService joinedTableInheritanceService;
 	@Autowired
 	TagService tagService;
+	@Autowired
+	PostService postService;
+	@Autowired
+	EntityManager entityManager;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootWebJpaJspApplication.class, args);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public void run(String... args) throws Exception {
 
 		System.out.println("This is Created" + customUserMyBaseRepository.findByEmailAddress("dasarishiva1@gmail.com"));
@@ -138,7 +149,15 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 		tag1.setName("Hibernate");
 		tagService.saveTag(tag);
 		tagService.saveTag(tag1);
+		
 		Post post=new Post();
 		post.setTitle("A");
+		
+		post.addDetails(details);
+		postCommentList.forEach(post::addComment);
+		
+		/*post.getTags().add(tagService.getTag("JDBC"));
+		post.getTags().add(tagService.getTag("Hibernate"));*/
+		postService.savePost(post);
 	}
 }
