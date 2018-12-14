@@ -10,6 +10,11 @@ public class GoodStudent extends Student {
 	private String appriciate;
 	private String helpOthers;
 
+	public GoodStudent() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getAppriciate() {
 		return appriciate;
 	}
