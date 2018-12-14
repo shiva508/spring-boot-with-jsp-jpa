@@ -21,7 +21,9 @@ import com.web.ldap.model.InstrucrorDetails;
 import com.web.ldap.model.entityinheritance.ContractEmployee;
 import com.web.ldap.model.entityinheritance.FullTimeEmployee;
 import com.web.ldap.model.entityinheritance.PartTimeEmployee;
+import com.web.ldap.model.entityinheritance.SmsNotification;
 import com.web.ldap.service.EmployeeService;
+import com.web.ldap.service.JoinedTableInheritanceService;
 
 @SpringBootApplication
 /* @EnableCaching */
@@ -41,7 +43,8 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 	FullTimeEmployeeRepository fullTimeEmployeeRepository;
 	@Autowired
 	EmployeeService employeeDao;
-
+	@Autowired
+	JoinedTableInheritanceService joinedTableInheritanceService;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootWebJpaJspApplication.class, args);
 	}
@@ -88,8 +91,12 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 		ContractEmployee contractEmployee=new ContractEmployee();
 		contractEmployee.setHourlyRate(100);
 		contractEmployee.setName("SD");
-		
 		employeeDao.saveContr(contractEmployee);
+		SmsNotification  smsNotification=new SmsNotification();
+		smsNotification.setFirstName("shiva");
+		smsNotification.setLastName("Dasari");
+		smsNotification.setPhoneNumber("8247621473");
 		// fullTimeEmployeeRepository.save(partTimeEmployee);
+		joinedTableInheritanceService.sendSme(smsNotification);
 	}
 }
