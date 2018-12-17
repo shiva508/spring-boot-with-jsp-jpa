@@ -196,28 +196,35 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 		
 		Course course1=new Course();
 		course1.setName("Spring frameWork");
+		
+		Course course2=new Course();
+		course2.setName("CNC");
+		
+		Course course3=new Course();
+		course3.setName("Machine drowing");
+		
+		
 		List<Course> courseList=new ArrayList<>();
 		courseList.add(course);
 		courseList.add(course1);
+		
 		Student student=new Student();
 		student.setName("Shiva");
 		courseList.forEach(student::addCourse);
+		
 		Student student1=new Student();
 		student1.setName("Staish");
-		Course course2=new Course();
-		course2.setName("CNC");
+		courseList.forEach(student1::addCourse);
+		
 		List<Student> studentList=new ArrayList<>();
 		studentList.add(student);
 		studentList.add(student1);
-		Course course3=new Course();
-		studentList.forEach(course::addStudent);
-		studentList.forEach(course1::addStudent);
-		course3.setName("Machine drowing");
-		course3.addStudent(student1);
+		
+		
 		List<Course> courseList1=new ArrayList<>();
 		courseList1.add(course2);
 		courseList1.add(course3);
-		courseList.forEach(student1::addCourse);
+		
 		studentRepository.save(student);
 		studentRepository.save(student1);
 	}
