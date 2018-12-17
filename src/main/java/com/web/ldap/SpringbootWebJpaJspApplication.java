@@ -24,11 +24,14 @@ import com.web.ldap.dao.FullTimeEmployeeRepository;
 import com.web.ldap.dao.InstrucrorDetailsRepository;
 import com.web.ldap.dao.InstrucrorRepository;
 import com.web.ldap.dao.LionRepository;
+import com.web.ldap.dao.StudentembeddedIdRepository;
 import com.web.ldap.dao.DefiningRepositoryInterfaces.FinetuningRepositoryDefinition.CustomUserMyBaseRepository;
 import com.web.ldap.dao.manytomany.StudentRepository;
 import com.web.ldap.model.embeddable.Animal;
 import com.web.ldap.model.embeddable.Elephant;
 import com.web.ldap.model.embeddable.Lion;
+import com.web.ldap.model.embeddedId.Person;
+import com.web.ldap.model.embeddedId.StudentembeddedId;
 import com.web.ldap.model.entityinheritance.ContractEmployee;
 import com.web.ldap.model.entityinheritance.FullTimeEmployee;
 import com.web.ldap.model.entityinheritance.PartTimeEmployee;
@@ -78,6 +81,8 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 	ElephantRepository elephantRepository;
 	@Autowired
 	StudentRepository studentRepository;
+	@Autowired
+	StudentembeddedIdRepository studentembeddedIdRepository; 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootWebJpaJspApplication.class, args);
 	}
@@ -229,5 +234,16 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 		studentRepository.save(student1);
 		Optional<Student> studenttest=studentRepository.findById(1);
 		System.out.println(studenttest.get());
+		
+		
+		Person person=new Person();
+		person.setFirstName("Shiva");
+		person.setLastName("Dasari");
+		person.setPersonId(1);
+		StudentembeddedId studentembeddedId=new StudentembeddedId();
+		studentembeddedId.setLocation("Thalla Malkapuram");
+		studentembeddedId.setId(person);
+		studentembeddedIdRepository.save(studentembeddedId);
+		
 	}
 }
