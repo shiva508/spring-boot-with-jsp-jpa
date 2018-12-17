@@ -25,6 +25,7 @@ import com.web.ldap.dao.InstrucrorDetailsRepository;
 import com.web.ldap.dao.InstrucrorRepository;
 import com.web.ldap.dao.LionRepository;
 import com.web.ldap.dao.DefiningRepositoryInterfaces.FinetuningRepositoryDefinition.CustomUserMyBaseRepository;
+import com.web.ldap.dao.manytomany.StudentRepository;
 import com.web.ldap.model.Instrucror;
 import com.web.ldap.model.InstrucrorDetails;
 import com.web.ldap.model.embeddable.Animal;
@@ -38,6 +39,8 @@ import com.web.ldap.model.entityinheritance.PostComment;
 import com.web.ldap.model.entityinheritance.PostDetails;
 import com.web.ldap.model.entityinheritance.SmsNotification;
 import com.web.ldap.model.entityinheritance.Tag;
+import com.web.ldap.model.manytomany.Course;
+import com.web.ldap.model.manytomany.Student;
 import com.web.ldap.service.EmployeeService;
 import com.web.ldap.service.JoinedTableInheritanceService;
 import com.web.ldap.service.PostService;
@@ -73,6 +76,8 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 	LionRepository lionRepository;
 	@Autowired
 	ElephantRepository elephantRepository;
+	@Autowired
+	StudentRepository studentRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootWebJpaJspApplication.class, args);
 	}
@@ -185,5 +190,35 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 		
 		System.out.println(lionRepository.findAll());
 		System.out.println(elephantRepository.findAll());
+		
+		Course course=new Course();
+		course.setName("Java");
+		
+		Course course1=new Course();
+		course1.setName("Spring frameWork");
+		List<Course> courseList=new ArrayList<>();
+		courseList.add(course);
+		courseList.add(course1);
+		Student student=new Student();
+		student.setName("Shiva");
+		courseList.forEach(student::addCourse);
+		Student student1=new Student();
+		student1.setName("Staish");
+		Course course2=new Course();
+		course2.setName("CNC");
+		List<Student> studentList=new ArrayList<>();
+		studentList.add(student);
+		studentList.add(student1);
+		Course course3=new Course();
+		studentList.forEach(course::addStudent);
+		studentList.forEach(course1::addStudent);
+		course3.setName("Machine drowing");
+		course3.addStudent(student1);
+		List<Course> courseList1=new ArrayList<>();
+		courseList1.add(course2);
+		courseList1.add(course3);
+		courseList.forEach(student1::addCourse);
+		studentRepository.save(student);
+		studentRepository.save(student1);
 	}
 }
