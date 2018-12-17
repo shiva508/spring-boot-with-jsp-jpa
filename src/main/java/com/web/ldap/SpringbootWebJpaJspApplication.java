@@ -18,13 +18,18 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import com.web.ldap.dao.ElephantRepository;
 import com.web.ldap.dao.EmployeeDao;
 import com.web.ldap.dao.FullTimeEmployeeRepository;
 import com.web.ldap.dao.InstrucrorDetailsRepository;
 import com.web.ldap.dao.InstrucrorRepository;
+import com.web.ldap.dao.LionRepository;
 import com.web.ldap.dao.DefiningRepositoryInterfaces.FinetuningRepositoryDefinition.CustomUserMyBaseRepository;
 import com.web.ldap.model.Instrucror;
 import com.web.ldap.model.InstrucrorDetails;
+import com.web.ldap.model.embeddable.Animal;
+import com.web.ldap.model.embeddable.Elephant;
+import com.web.ldap.model.embeddable.Lion;
 import com.web.ldap.model.entityinheritance.ContractEmployee;
 import com.web.ldap.model.entityinheritance.FullTimeEmployee;
 import com.web.ldap.model.entityinheritance.PartTimeEmployee;
@@ -64,6 +69,10 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 	PostService postService;
 	@Autowired
 	EntityManager entityManager;
+	@Autowired
+	LionRepository lionRepository;
+	@Autowired
+	ElephantRepository elephantRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootWebJpaJspApplication.class, args);
 	}
@@ -158,5 +167,23 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 		post.getTags().add(tagService.getTag("JDBC"));
 		post.getTags().add(tagService.getTag("Hibernate"));
 		postService.savePost(post);
+		
+		Animal animal1=new Animal();
+		animal1.setLocation("HYD");
+		animal1.setName("Lion");
+		
+		Animal animal2=new Animal();
+		animal2.setLocation("TMP");
+		animal2.setName("Elephant");
+		
+		Lion lion=new Lion();
+		lion.setAnimal(animal1);
+		lionRepository.save(lion);
+		Elephant elephant=new Elephant();
+		elephant.setAnimal(animal2);
+		elephantRepository.save(elephant);
+		
+		System.out.println(lionRepository.findAll());
+		System.out.println(elephantRepository.findAll());
 	}
 }
