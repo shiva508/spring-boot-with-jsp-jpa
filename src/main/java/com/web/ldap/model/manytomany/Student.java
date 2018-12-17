@@ -23,7 +23,7 @@ public class Student {
 
 	@Column(nullable = false)
 	private String name;
-	@ManyToMany(cascade= {CascadeType.PERSIST,CascadeType.MERGE},fetch=FetchType.LAZY)
+	@ManyToMany(cascade= {CascadeType.PERSIST,CascadeType.MERGE},fetch=FetchType.EAGER)
 	@JoinTable(name="STUDENT1_COURCE",
 	joinColumns=@JoinColumn(name="STUDENT_ID"),inverseJoinColumns=@JoinColumn(name="COURSE_ID"))
 	private List<Course> courses=new ArrayList<>();
@@ -56,6 +56,7 @@ public class Student {
 	}
 	@Override
 	public String toString() {
-		return String.format("Student[%s]", name);
+		return "Student [id=" + id + ", name=" + name + ", courses=" + courses + "]";
 	}
+	
 }

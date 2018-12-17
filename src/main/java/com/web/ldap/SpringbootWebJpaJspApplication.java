@@ -227,5 +227,7 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 		
 		studentRepository.save(student);
 		studentRepository.save(student1);
+		Optional<Student> studenttest=studentRepository.findById(1);
+		System.out.println(studenttest.get());
 	}
 }
