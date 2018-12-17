@@ -156,8 +156,8 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 		post.addDetails(details);
 		postCommentList.forEach(post::addComment);
 		
-		/*post.getTags().add(tagService.getTag("JDBC"));
-		post.getTags().add(tagService.getTag("Hibernate"));*/
+		post.getTags().add(tagService.getTag("JDBC"));
+		post.getTags().add(tagService.getTag("Hibernate"));
 		postService.savePost(post);
 	}
 }

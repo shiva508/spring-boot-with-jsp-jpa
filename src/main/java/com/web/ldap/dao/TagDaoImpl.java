@@ -24,7 +24,7 @@ public class TagDaoImpl implements TagDao {
 	public Tag getTag(String referencace) {
 		Session session=entityManager.unwrap(Session.class);
 		
-		return session.bySimpleNaturalId(Tag.class).load(referencace);
+		return session.bySimpleNaturalId(Tag.class).getReference(referencace);
 	}
 
 }
