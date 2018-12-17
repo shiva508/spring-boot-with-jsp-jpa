@@ -1,4 +1,4 @@
-package com.web.ldap.model;
+package com.web.ldap.model.onetoone;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

@@ -3,7 +3,7 @@ package com.web.ldap.dao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.web.ldap.model.Instrucror;
+import com.web.ldap.model.onetoone.Instrucror;
 @Repository
 public interface InstrucrorRepository extends JpaRepository<Instrucror, Integer> {
 
