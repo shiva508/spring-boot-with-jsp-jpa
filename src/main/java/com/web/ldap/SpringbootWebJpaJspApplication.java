@@ -24,6 +24,7 @@ import com.web.ldap.dao.FullTimeEmployeeRepository;
 import com.web.ldap.dao.InstrucrorDetailsRepository;
 import com.web.ldap.dao.InstrucrorRepository;
 import com.web.ldap.dao.LionRepository;
+import com.web.ldap.dao.PostOneToOneRepository;
 import com.web.ldap.dao.StudentembeddedIdRepository;
 import com.web.ldap.dao.DefiningRepositoryInterfaces.FinetuningRepositoryDefinition.CustomUserMyBaseRepository;
 import com.web.ldap.dao.manytomany.StudentRepository;
@@ -44,6 +45,8 @@ import com.web.ldap.model.manytomany.Course;
 import com.web.ldap.model.manytomany.Student;
 import com.web.ldap.model.onetoone.Instrucror;
 import com.web.ldap.model.onetoone.InstrucrorDetails;
+import com.web.ldap.model.onetoone.PostDetailsOneToOne;
+import com.web.ldap.model.onetoone.PostOneToOne;
 import com.web.ldap.service.EmployeeService;
 import com.web.ldap.service.JoinedTableInheritanceService;
 import com.web.ldap.service.PostService;
@@ -83,6 +86,8 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 	StudentRepository studentRepository;
 	@Autowired
 	StudentembeddedIdRepository studentembeddedIdRepository; 
+	@Autowired
+	PostOneToOneRepository postOneToOneRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootWebJpaJspApplication.class, args);
 	}
@@ -244,6 +249,15 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 		studentembeddedId.setLocation("Thalla Malkapuram");
 		studentembeddedId.setId(person);
 		studentembeddedIdRepository.save(studentembeddedId);
+		PostOneToOne postOneToOne=new PostOneToOne();
+		/*postOneToOne.setDetailsOneToOne(detailsOneToOne);*/
+		//postOneToOne.addPostDetailsOneToOne(detailsOneToOne);
+		postOneToOne.setTitle("One to One Maps");
+		PostDetailsOneToOne detailsOneToOne=new PostDetailsOneToOne();
+		detailsOneToOne.setCreatedBy("Shiva");
+		detailsOneToOne.setCreatedOn(new Date());
+		detailsOneToOne.setPostOneToOne(postOneToOne);
 		
+		postOneToOneRepository.save(postOneToOne);
 	}
 }
