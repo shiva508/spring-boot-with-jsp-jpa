@@ -68,9 +68,8 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 		SpringApplication.run(SpringbootWebJpaJspApplication.class, args);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
+
 	public void run(String... args) throws Exception {
 
 		System.out.println("This is Created" + customUserMyBaseRepository.findByEmailAddress("dasarishiva1@gmail.com"));
@@ -151,7 +150,7 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 		tagService.saveTag(tag1);
 		
 		Post post=new Post();
-		post.setTitle("A");
+		post.setTitle("High-Performance Java Persistence");
 		
 		post.addDetails(details);
 		postCommentList.forEach(post::addComment);
