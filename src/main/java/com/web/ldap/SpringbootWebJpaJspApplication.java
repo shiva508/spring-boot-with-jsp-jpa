@@ -1,5 +1,6 @@
 package com.web.ldap;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +26,7 @@ import com.web.ldap.dao.InstrucrorDetailsRepository;
 import com.web.ldap.dao.InstrucrorRepository;
 import com.web.ldap.dao.LionRepository;
 import com.web.ldap.dao.PostOneToOneRepository;
+import com.web.ldap.dao.ProductRepository;
 import com.web.ldap.dao.StudentembeddedIdRepository;
 import com.web.ldap.dao.DefiningRepositoryInterfaces.FinetuningRepositoryDefinition.CustomUserMyBaseRepository;
 import com.web.ldap.dao.manytomany.StudentRepository;
@@ -41,6 +43,8 @@ import com.web.ldap.model.entityinheritance.PostComment;
 import com.web.ldap.model.entityinheritance.PostDetails;
 import com.web.ldap.model.entityinheritance.SmsNotification;
 import com.web.ldap.model.entityinheritance.Tag;
+import com.web.ldap.model.joinformula.Price;
+import com.web.ldap.model.joinformula.Product;
 import com.web.ldap.model.manytomany.Course;
 import com.web.ldap.model.manytomany.Student;
 import com.web.ldap.model.onetoone.Instrucror;
@@ -85,10 +89,13 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 	@Autowired
 	StudentRepository studentRepository;
 	@Autowired
-	StudentembeddedIdRepository studentembeddedIdRepository; 
+	StudentembeddedIdRepository studentembeddedIdRepository;
 	@Autowired
 	PostOneToOneRepository postOneToOneRepository;
+	@Autowired
+	ProductRepository productRepository;
 	public static void main(String[] args) {
+		
 		SpringApplication.run(SpringbootWebJpaJspApplication.class, args);
 	}
 
@@ -128,140 +135,147 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 		partTimeEmployee.setName("Shiva");
 		partTimeEmployee.setWeeklySalary(100);
 		employeeDao.savePart(partTimeEmployee);
-		FullTimeEmployee fullTimeEmployee =new FullTimeEmployee();
+		FullTimeEmployee fullTimeEmployee = new FullTimeEmployee();
 		fullTimeEmployee.setName("Satish");
 		fullTimeEmployee.setSalary(10000);
 		employeeDao.saveFull(fullTimeEmployee);
-		ContractEmployee contractEmployee=new ContractEmployee();
+		ContractEmployee contractEmployee = new ContractEmployee();
 		contractEmployee.setHourlyRate(100);
 		contractEmployee.setName("SD");
 		employeeDao.saveContr(contractEmployee);
-		SmsNotification  smsNotification=new SmsNotification();
+		SmsNotification smsNotification = new SmsNotification();
 		smsNotification.setFirstName("shiva");
 		smsNotification.setLastName("Dasari");
 		smsNotification.setPhoneNumber("8247621473");
 		// fullTimeEmployeeRepository.save(partTimeEmployee);
 		joinedTableInheritanceService.sendSme(smsNotification);
-		
-		PostComment comment=new PostComment();
+
+		PostComment comment = new PostComment();
 		comment.setReview("Good");
-		
-		PostComment comment1=new PostComment();
+
+		PostComment comment1 = new PostComment();
 		comment1.setReview("Very Good");
-		
-		List<PostComment> postCommentList=new ArrayList<>();
+
+		List<PostComment> postCommentList = new ArrayList<>();
 		postCommentList.add(comment);
 		postCommentList.add(comment1);
-		
-		
-		PostDetails details=new PostDetails();
+
+		PostDetails details = new PostDetails();
 		details.setCreatedBy("Shiva");
 		details.setCreatedOn(new Date());
-		PostDetails details1=new PostDetails();
+		PostDetails details1 = new PostDetails();
 		details1.setCreatedBy("Sai");
 		details1.setCreatedOn(new Date());
-		
-		List<PostDetails> postDetailsList=new ArrayList<>();
+
+		List<PostDetails> postDetailsList = new ArrayList<>();
 		postDetailsList.add(details);
 		postDetailsList.add(details1);
-		
-		Tag tag=new Tag();
+
+		Tag tag = new Tag();
 		tag.setName("JDBC");
-		
-		Tag tag1=new Tag();
+
+		Tag tag1 = new Tag();
 		tag1.setName("Hibernate");
 		tagService.saveTag(tag);
 		tagService.saveTag(tag1);
-		
-		Post post=new Post();
+
+		Post post = new Post();
 		post.setTitle("High-Performance Java Persistence");
-		
+
 		post.addDetails(details);
 		postCommentList.forEach(post::addComment);
-		
+
 		post.getTags().add(tagService.getTag("JDBC"));
 		post.getTags().add(tagService.getTag("Hibernate"));
 		postService.savePost(post);
-		
-		Animal animal1=new Animal();
+
+		Animal animal1 = new Animal();
 		animal1.setLocation("HYD");
 		animal1.setName("Lion");
-		
-		Animal animal2=new Animal();
+
+		Animal animal2 = new Animal();
 		animal2.setLocation("TMP");
 		animal2.setName("Elephant");
-		
-		Lion lion=new Lion();
+
+		Lion lion = new Lion();
 		lion.setAnimal(animal1);
 		lionRepository.save(lion);
-		Elephant elephant=new Elephant();
+		Elephant elephant = new Elephant();
 		elephant.setAnimal(animal2);
 		elephantRepository.save(elephant);
-		
+
 		System.out.println(lionRepository.findAll());
 		System.out.println(elephantRepository.findAll());
-		
-		Course course=new Course();
+
+		Course course = new Course();
 		course.setName("Java");
-		
-		Course course1=new Course();
+
+		Course course1 = new Course();
 		course1.setName("Spring frameWork");
-		
-		Course course2=new Course();
+
+		Course course2 = new Course();
 		course2.setName("CNC");
-		
-		Course course3=new Course();
+
+		Course course3 = new Course();
 		course3.setName("Machine drowing");
-		
-		
-		List<Course> courseList=new ArrayList<>();
+
+		List<Course> courseList = new ArrayList<>();
 		courseList.add(course);
 		courseList.add(course1);
-		
-		Student student=new Student();
+
+		Student student = new Student();
 		student.setName("Shiva");
 		courseList.forEach(student::addCourse);
-		
-		Student student1=new Student();
+
+		Student student1 = new Student();
 		student1.setName("Staish");
 		courseList.forEach(student1::addCourse);
-		
-		List<Student> studentList=new ArrayList<>();
+
+		List<Student> studentList = new ArrayList<>();
 		studentList.add(student);
 		studentList.add(student1);
-		
-		
-		List<Course> courseList1=new ArrayList<>();
+
+		List<Course> courseList1 = new ArrayList<>();
 		courseList1.add(course2);
 		courseList1.add(course3);
-		
+
 		studentRepository.save(student);
 		studentRepository.save(student1);
-		Optional<Student> studenttest=studentRepository.findById(1);
+		Optional<Student> studenttest = studentRepository.findById(1);
 		System.out.println(studenttest.get());
-		
-		
-		Person person=new Person();
+
+		Person person = new Person();
 		person.setFirstName("Shiva");
 		person.setLastName("Dasari");
 		person.setPersonId(1);
-		StudentembeddedId studentembeddedId=new StudentembeddedId();
+		StudentembeddedId studentembeddedId = new StudentembeddedId();
 		studentembeddedId.setLocation("Thalla Malkapuram");
 		studentembeddedId.setId(person);
 		studentembeddedIdRepository.save(studentembeddedId);
-		PostOneToOne postOneToOne=new PostOneToOne();
-		/*postOneToOne.setDetailsOneToOne(detailsOneToOne);*/
-		//postOneToOne.addPostDetailsOneToOne(detailsOneToOne);
+		PostOneToOne postOneToOne = new PostOneToOne();
+		/* postOneToOne.setDetailsOneToOne(detailsOneToOne); */
+		// postOneToOne.addPostDetailsOneToOne(detailsOneToOne);
 		postOneToOne.setTitle("One to One Maps");
-		PostDetailsOneToOne detailsOneToOne=new PostDetailsOneToOne();
+		PostDetailsOneToOne detailsOneToOne = new PostDetailsOneToOne();
 		detailsOneToOne.setCreatedBy("Shiva");
 		detailsOneToOne.setCreatedOn(new Date());
-		//detailsOneToOne.setPostOneToOne(postOneToOne);
-		//changes for @MapsId
-		//postOneToOne.setDetailsOneToOne(detailsOneToOne);
+		// detailsOneToOne.setPostOneToOne(postOneToOne);
+		// changes for @MapsId
+		// postOneToOne.setDetailsOneToOne(detailsOneToOne);
 		postOneToOne.addPostDetailsOneToOne(detailsOneToOne);
 		postOneToOneRepository.save(postOneToOne);
-		Optional<PostOneToOne> optional=postOneToOneRepository.findById(1);
-		System.out.println("One to One MapsId:"+optional.get());
+		Optional<PostOneToOne> optional = postOneToOneRepository.findById(1);
+		System.out.println("One to One MapsId:" + optional.get());
+
+		
+		Product product = new Product();
+		product.setName("rice");
+		product.addPrice(new BigDecimal(1200));
+		product.addPrice(new BigDecimal(1300));
+		productRepository.save(product);
+		Optional<Product> optional2=productRepository.findById(1L);
+		System.out.println(optional2.get());
+		
+		
 	}
 }
