@@ -257,7 +257,7 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 		detailsOneToOne.setCreatedBy("Shiva");
 		detailsOneToOne.setCreatedOn(new Date());
 		detailsOneToOne.setPostOneToOne(postOneToOne);
-		
+		postOneToOne.setDetailsOneToOne(detailsOneToOne);
 		postOneToOneRepository.save(postOneToOne);
 	}
 }

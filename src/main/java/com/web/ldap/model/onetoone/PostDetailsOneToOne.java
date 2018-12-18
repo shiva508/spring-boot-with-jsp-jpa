@@ -24,7 +24,7 @@ public class PostDetailsOneToOne {
     @Column(name = "created_by")
     private String createdBy;
     @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="post_id")
+  
     private PostOneToOne postOneToOne;
 	public Long getId() {
 		return id;

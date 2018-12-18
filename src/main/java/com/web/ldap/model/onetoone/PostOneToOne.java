@@ -18,6 +18,7 @@ public class PostOneToOne {
 private Integer id;
 private String title;
 @OneToOne(mappedBy="postOneToOne",cascade=CascadeType.ALL,fetch=FetchType.LAZY,optional=false)
+@JoinColumn(name="post_id")
 private PostDetailsOneToOne detailsOneToOne;
 public Integer getId() {
 	return id;
