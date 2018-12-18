@@ -256,8 +256,12 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 		PostDetailsOneToOne detailsOneToOne=new PostDetailsOneToOne();
 		detailsOneToOne.setCreatedBy("Shiva");
 		detailsOneToOne.setCreatedOn(new Date());
-		detailsOneToOne.setPostOneToOne(postOneToOne);
-		postOneToOne.setDetailsOneToOne(detailsOneToOne);
+		//detailsOneToOne.setPostOneToOne(postOneToOne);
+		//changes for @MapsId
+		//postOneToOne.setDetailsOneToOne(detailsOneToOne);
+		postOneToOne.addPostDetailsOneToOne(detailsOneToOne);
 		postOneToOneRepository.save(postOneToOne);
+		Optional<PostOneToOne> optional=postOneToOneRepository.findById(1);
+		System.out.println("One to One MapsId:"+optional.get());
 	}
 }

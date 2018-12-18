@@ -15,10 +15,11 @@ import javax.persistence.Table;
 public class PostOneToOne {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-private Integer id;
+	private Integer id;
 private String title;
 @OneToOne(mappedBy="postOneToOne",cascade=CascadeType.ALL,fetch=FetchType.LAZY,optional=false)
-@JoinColumn(name="post_id")
+//changes for @MapsId
+/*@JoinColumn(name="post_id")*/
 private PostDetailsOneToOne detailsOneToOne;
 public Integer getId() {
 	return id;
@@ -38,9 +39,20 @@ public PostDetailsOneToOne getDetailsOneToOne() {
 public void setDetailsOneToOne(PostDetailsOneToOne detailsOneToOne) {
 	this.detailsOneToOne = detailsOneToOne;
 }
+//changes for @MapsId
 public void addPostDetailsOneToOne(PostDetailsOneToOne detailsOneToOne) {
+	if(detailsOneToOne==null) {
+		if(this.detailsOneToOne !=null) {
+			this.detailsOneToOne.setPostOneToOne(null);
+		}
+	}else {
+		detailsOneToOne.setPostOneToOne(this);
+	}
 	this.detailsOneToOne=detailsOneToOne;
-	detailsOneToOne.setPostOneToOne(this);
+}
+@Override
+public String toString() {
+	return "PostOneToOne [id=" + id + ", title=" + title + ", detailsOneToOne=" + detailsOneToOne + "]";
 }
 
 }
