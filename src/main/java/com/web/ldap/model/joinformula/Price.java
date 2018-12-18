@@ -21,7 +21,7 @@ public class Price {
     @ManyToOne
     private Product product;
 
-    @Column(name = "created_on", nullable=false, updatable=false)
+    @Column(nullable=false, updatable=false)
     private Date createdOn;
 
     private BigDecimal price;
@@ -34,7 +34,15 @@ public class Price {
         return price;
     }
 
-    public void setPrice(BigDecimal priceValue) {
+    public Date getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public void setPrice(BigDecimal priceValue) {
         this.price = priceValue;
     }
 

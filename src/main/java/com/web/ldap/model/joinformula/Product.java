@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,9 +29,9 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
     private List<Price> prices = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinFormula(
-        "(SELECT id FROM price ORDER BY CREATED_ON DESC LIMIT 1)"
+        "(SELECT id FROM price ORDER BY createdOn DESC LIMIT 1)"
     )
     private Price latestPrice;
 

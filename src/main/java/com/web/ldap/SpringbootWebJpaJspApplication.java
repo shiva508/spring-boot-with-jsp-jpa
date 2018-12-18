@@ -271,10 +271,10 @@ public class SpringbootWebJpaJspApplication implements CommandLineRunner /* exte
 		Product product = new Product();
 		product.setName("rice");
 		product.addPrice(new BigDecimal(1200));
-		product.addPrice(new BigDecimal(1300));
+		/*product.addPrice(new BigDecimal(1300));*/
 		productRepository.save(product);
-		Optional<Product> optional2=productRepository.findById(1L);
-		System.out.println(optional2.get());
+		/*Optional<Product> optional2=productRepository.findById(1L);
+		System.out.println(optional2.get());*/
 		
 		
 	}
