@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Table(name = "USER_ADDRESS")
 public class PhoneNumber {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ADDRESS_ID")
 	private Integer addressId;
 	@Column(name = "MOBILE_NUMBER_TYPE")

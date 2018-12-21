@@ -19,6 +19,7 @@ extends JpaRepository<UserModel, Integer>,CustomUserModelRepository {
 public UserModel findByEmailAddress(String emailAddress);
 //List<UserModel >findUserModelByUserNameAndEmailAddress(String username,String emailAddress);
 //@Query("SELECT U FROM UserModel U where U.userName=?1 AND U.language=?2")
+
 @Query("SELECT U FROM UserModel U where U.userName=:userName and U.language=:language")
 public UserModel findByUserNameAndLanguage(@Param("userName")String userName,@Param("language")String language );
 @Query("select u from UserModel u where u.userName like %?1")

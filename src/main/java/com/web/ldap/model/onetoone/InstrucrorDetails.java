@@ -36,7 +36,8 @@ public class InstrucrorDetails {
 	@OneToOne(mappedBy="instrucrorDetails",cascade= {CascadeType.DETACH,
 													CascadeType.MERGE,
 													CascadeType.PERSIST,
-													CascadeType.REFRESH})
+													CascadeType.REFRESH
+	})
 	private Instrucror instrucror;
 	public Instrucror getInstrucror() {
 		return instrucror;

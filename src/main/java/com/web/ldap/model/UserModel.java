@@ -21,12 +21,15 @@ import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import io.micrometer.core.lang.NonNull;
 
 @Entity
 @Table
@@ -42,11 +45,13 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 // @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 public class UserModel {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "USER_ID")
 	private Integer id;
 
 	@Column(name = "USER_NAME")
+	@Size(max=10)
+	@NonNull
 	private String userName;
 
 	@Column(name = "EMAIL")
