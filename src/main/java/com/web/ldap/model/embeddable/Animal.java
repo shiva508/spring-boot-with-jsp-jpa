@@ -11,7 +11,6 @@ public class Animal {
 	private String location;
 	public Animal() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public String getName() {
 		return name;

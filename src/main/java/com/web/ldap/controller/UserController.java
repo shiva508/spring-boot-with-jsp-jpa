@@ -45,11 +45,13 @@ public class UserController {
 	}
 
 	@PostMapping(value = "/saveuser")
-	public String saveUser(@ModelAttribute("userModel") UserModel userModel,BindingResult  result) {
-		/*if(result.hasErrors()) {
-			
-			
-		}*/
+	public String saveUser(@ModelAttribute("userModel") UserModel userModel, BindingResult result) {
+		/*
+		 * if(result.hasErrors()) {
+		 * 
+		 * 
+		 * }
+		 */
 		List<PhoneNumber> phoneNumberList = new ArrayList<>();
 		System.out.println(userModel);
 		ArrayList<PhoneNumber> dcvasv = new ArrayList<>();
@@ -104,13 +106,14 @@ public class UserController {
 		languages.add(".NET");
 		return languages;
 	}
+
 	@ModelAttribute("alphabets")
 	Map<Integer, String> multiselect() {
 		Map<Integer, String> maplist = new TreeMap<>();
-		maplist.put(1,"A");
-		maplist.put(2,"B");
-		maplist.put(3,"C");
-		maplist.put(4,"D");
+		maplist.put(1, "A");
+		maplist.put(2, "B");
+		maplist.put(3, "C");
+		maplist.put(4, "D");
 		return maplist;
 	}
 
